@@ -1,10 +1,12 @@
 #include <iostream>
 
 #include "sdlgl/graphics/graphics.h"
-#include "sdlgl/game/clock.h"
-#include "sdlgl/game/scene.h"
-#include "sdlgl/input/inputs.h"
-#include "sdlgl/ui/fps_display.h"
+#include <sdlgl/game/clock.h>
+#include <sdlgl/game/scene.h>
+#include <sdlgl/input/inputs.h>
+#include <sdlgl/ui/fps_display.h>
+
+#include "entities/player.h"
 
 
 int main() {
@@ -20,6 +22,9 @@ int main() {
 
     // Create and populate scene
     Scene scene(&inputs, &graphics);
+    scene.add_entity(new Player(&scene, 100, 100, 0, {0, 0, 0, 0}));
+    scene.add_entity(new FPS_Display(
+        &scene, "base_text", {0, 0, 0, 255}));
 
     // Enter a simple update loop
     bool loop = true;
