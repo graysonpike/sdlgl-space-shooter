@@ -3,8 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include <sdlgl/game/scene.h>
+#include <sdlgl/game/physical_entity.h>
 #include <sdlgl/graphics/texture.h>
-#include "physical_entity.h"
 
 class Player : public PhysicalEntity {
 
