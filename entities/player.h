@@ -2,23 +2,25 @@
 #define PLAYER_H
 
 #include <SDL2/SDL.h>
-#include <sdlgl/game/entity.h>
 #include <sdlgl/game/scene.h>
 #include <sdlgl/graphics/texture.h>
+#include "physical_entity.h"
 
-class Player : public Entity {
+class Player : public PhysicalEntity {
 
-	float x, y;
-	float angle;
-	SDL_Color color;
+    float vx, vy;
+    float angle;
+    SDL_Color color;
 
-	Texture texture;
+    Texture texture;
+    void handle_inputs(Inputs *inputs);
+    void enforce_max_speed();
 
 public:
 
-	Player(Scene *scene, float x, float y, float angle, SDL_Color color);
-	void update();
-	void render();
+    Player(Scene *scene, float x, float y, float angle, SDL_Color color);
+    void update();
+    void render();
 
 };
 
