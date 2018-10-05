@@ -27,14 +27,13 @@
 #define TURN_SPEED (3.0f)
 
 
-Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) {
+Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
+    PhysicalEntity(x, y, 0, 0) {
 
     Resources *resources = scene->get_graphics()->get_resources();
 
     this->texture = resources->get_texture("ship"); 
     this->scene = scene;
-    this->x = x;
-    this->y = x;
     this->vx = 0;
     this->vy = 0;
     this->angle = angle;
@@ -85,18 +84,18 @@ void Player::enforce_max_speed() {
 
 void Player::update() {
 
-    this->handle_inputs(scene->get_inputs());
-    this->enforce_max_speed();
+    handle_inputs(scene->get_inputs());
+    enforce_max_speed();
 
     // Apply change in x and y directions
     float delta = scene->get_delta();
     x += delta * vx;
     y += delta * vy;
 
-    this->wrap_bounds();
+    wrap_bounds();
 
 }
 
 void Player::render() {
-    this->texture.draw(this->scene->get_graphics()->get_renderer(), this->x, this->y, this->angle);
+    texture.draw(scene->get_graphics()->get_renderer(), this->x, this->y, this->angle);
 }
