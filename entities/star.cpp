@@ -6,18 +6,24 @@
 #define MAX_SPEED (2.0f)
 
 
+void create_random_star(Scene *scene, float angle) {
+	Graphics *graphics = scene->get_graphics();
+	int x = rand() % graphics->get_width();
+	int y = rand() % graphics->get_height();
+	float speed = rand() / (float)(RAND_MAX) * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
+	float vx = speed * cos(angle);
+	float vy = speed * sin(angle);
+	scene->add_entity(new Star(scene, x, y, 2, 2, vx, vy));
+}
+
+
 void Star::create_starfield(Scene *scene, float density, float angle) {
 	// Determine how many stars to create, given a density in stars/100px^2
 	Graphics *graphics = scene->get_graphics();
 	int pixels = graphics->get_width() * graphics->get_height();
 	int stars = pixels / 10000 * density;
 	for (int i = 0; i < stars; i++) {
-		int x = rand() % graphics->get_width();
-		int y = rand() % graphics->get_height();
-		float speed = rand() / (float)(RAND_MAX) * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
-		float vx = speed * cos(angle);
-		float vy = speed * sin(angle);
-		scene->add_entity(new Star(scene, x, y, 2, 2, vx, vy));
+		create_random_star(scene, angle);	
 	}
 }
 
