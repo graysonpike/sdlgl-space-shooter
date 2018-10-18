@@ -4,12 +4,18 @@
 #include <sdlgl/game/clock.h>
 #include <sdlgl/game/scene.h>
 #include <sdlgl/input/inputs.h>
+#include <stdlib.h>
+#include <time.h>
+
 #include <sdlgl/ui/fps_display.h>
 
 #include "entities/player.h"
+#include "entities/star.h"
 
 
 int main() {
+
+    srand(time(NULL));
 
     Clock clock;
     Inputs inputs;
@@ -22,10 +28,10 @@ int main() {
 
     // Create and populate scene
     Scene scene(&inputs, &graphics);
-    scene.add_entity(new Player(&scene, 100, 100, 0, {0, 0, 0, 0}));
     scene.add_entity(new FPS_Display(
         &scene, "base_text", {0, 0, 0, 255}));
-    Star.create_starfield(&scene);
+    Star::create_starfield(&scene, 2.0f);
+    scene.add_entity(new Player(&scene, 100, 100, 0, {0, 0, 0, 0}));
 
     // Enter a simple update loop
     bool loop = true;

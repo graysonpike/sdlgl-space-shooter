@@ -28,12 +28,11 @@
 
 
 Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
-    PhysicalEntity(x, y, 0, 0) {
+    PhysicalEntity(scene, x, y, 0, 0) {
 
     Resources *resources = scene->get_graphics()->get_resources();
 
-    this->texture = resources->get_texture("ship"); 
-    this->scene = scene;
+    this->texture = resources->get_texture("ship");
     this->vx = 0;
     this->vy = 0;
     this->angle = angle;
