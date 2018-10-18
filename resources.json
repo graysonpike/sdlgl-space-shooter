@@ -1,6 +1,7 @@
 {
 	"textures": {
-		"ship": "ship/ship.png"
+		"ship": "ship/ship.png",
+		"laser": "laser/laser.png"
 	},
 	
 	"fonts": {
