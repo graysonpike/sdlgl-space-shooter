@@ -25,6 +25,7 @@ int main() {
     scene.add_entity(new Player(&scene, 100, 100, 0, {0, 0, 0, 0}));
     scene.add_entity(new FPS_Display(
         &scene, "base_text", {0, 0, 0, 255}));
+    Star.create_starfield(&scene);
 
     // Enter a simple update loop
     bool loop = true;
