@@ -29,7 +29,7 @@ int main() {
     // Create and populate scene
     Scene scene(&inputs, &graphics);
     scene.add_entity(new FPS_Display(
-        &scene, "base_text", {0, 0, 0, 255}));
+        &scene, "base_text", {255, 255, 255, 255}));
     Star::create_starfield(&scene, 2.0f);
     scene.add_entity(new Player(&scene, 100, 100, 0, {0, 0, 0, 0}));
 
