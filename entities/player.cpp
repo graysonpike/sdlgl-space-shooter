@@ -1,6 +1,7 @@
 #include <sdlgl/graphics/resources.h>
 
 #include "player.h"
+#include "laser.h"
 
 
 #define KEY_P1_MOVE_UP      SDL_SCANCODE_W
@@ -25,11 +26,13 @@
 #define LINEAR_ACCEL (300.0f)
 // Turning speed in rad/sec
 #define TURN_SPEED (3.0f)
+// Cooldown time for shooting the laser in seconds
+#define LASER_COOLDOWN (1.0f)
 
 
 Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
     PhysicalEntity(scene, x, y, 0, 0),
-    laser_cooldown(Timer(1.0f)) {
+    laser_cooldown(Timer(LASER_COOLDOWN)) {
 
     Resources *resources = scene->get_graphics()->get_resources();
 
@@ -47,7 +50,8 @@ Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
 void Player::shoot_laser() {
 
     if (laser_cooldown.is_done()) {
-        printf("Spawn laser\n");
+        
+        scene->add_entity(new Laser(scene, x, y, angle, (SDL_Color){255, 255, 255, 255}));
         laser_cooldown.reset();
     }
 

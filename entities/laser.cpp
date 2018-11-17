@@ -3,7 +3,7 @@
 #include <sdlgl/graphics/resources.h>
 
 
-#define SPEED (100.0f)
+#define SPEED (300.0f)
 
 
 Laser::Laser(Scene *scene, float x, float y, float angle, SDL_Color color) :
@@ -21,6 +21,7 @@ void Laser::update() {
     float delta = scene->get_delta();
     x += delta * SPEED * cos(angle);
     y += delta * SPEED * sin(angle);
+    wrap_bounds();
 
 }
 
