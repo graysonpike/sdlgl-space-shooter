@@ -28,7 +28,8 @@
 
 
 Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
-    PhysicalEntity(scene, x, y, 0, 0) {
+    PhysicalEntity(scene, x, y, 0, 0),
+    laser_cooldown(Timer(1.0f)) {
 
     Resources *resources = scene->get_graphics()->get_resources();
 
@@ -43,21 +44,36 @@ Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
 }
 
 
+void Player::shoot_laser() {
+
+    if (laser_cooldown.is_done()) {
+        printf("Spawn laser\n");
+        laser_cooldown.reset();
+    }
+
+}
+
+
 void Player::handle_inputs(Inputs *inputs) {
 
     float delta = scene->get_delta();
 
-    if(inputs->is_key_down(KEY_P1_MOVE_UP)) {
+    if (inputs->is_key_down(KEY_P1_MOVE_UP)) {
         vx += delta * LINEAR_ACCEL * cos(angle);
         vy += delta * LINEAR_ACCEL * sin(angle);
     } else if (inputs->is_key_down(KEY_P1_MOVE_DOWN)) {
         vx -= delta * LINEAR_ACCEL * cos(angle);
         vy -= delta * LINEAR_ACCEL * sin(angle);
     }
-    if(inputs->is_key_down(KEY_P1_MOVE_LEFT)) {
+
+    if (inputs->is_key_down(KEY_P1_MOVE_LEFT)) {
         angle -= delta * TURN_SPEED;
     } else if (inputs->is_key_down(KEY_P1_MOVE_RIGHT)) {
         angle += delta * TURN_SPEED;
+    }
+
+    if (inputs->is_key_down(KEY_P1_FIRE_LASER)) {
+        shoot_laser();
     }
 
 }
