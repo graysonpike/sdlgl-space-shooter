@@ -12,7 +12,6 @@ class Player : public PhysicalEntity {
     float vx, vy;
     float angle;
     SDL_Color color;
-    Timer laser_cooldown;
     Texture texture;
 
     void handle_inputs(Inputs *inputs);

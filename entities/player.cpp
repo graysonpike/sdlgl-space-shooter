@@ -26,13 +26,10 @@
 #define LINEAR_ACCEL (300.0f)
 // Turning speed in rad/sec
 #define TURN_SPEED (3.0f)
-// Cooldown time for shooting the laser in seconds
-#define LASER_COOLDOWN (1.0f)
 
 
 Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
-    PhysicalEntity(scene, x, y, 0, 0),
-    laser_cooldown(Timer(LASER_COOLDOWN)) {
+    PhysicalEntity(scene, x, y, 0, 0) {
 
     Resources *resources = scene->get_graphics()->get_resources();
 
@@ -48,13 +45,8 @@ Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
 
 
 void Player::shoot_laser() {
-
-    if (laser_cooldown.is_done()) {
-        
-        scene->add_entity(new Laser(scene, x, y, angle, (SDL_Color){255, 255, 255, 255}));
-        laser_cooldown.reset();
-    }
-
+    scene->add_entity(new Laser(scene, x, y, angle, (SDL_Color){255, 255, 255, 255}));
+    printf("Entity added\n");
 }
 
 
@@ -76,8 +68,9 @@ void Player::handle_inputs(Inputs *inputs) {
         angle += delta * TURN_SPEED;
     }
 
-    if (inputs->is_key_down(KEY_P1_FIRE_LASER)) {
+    if (inputs->is_key_down_event(KEY_P1_FIRE_LASER)) {
         shoot_laser();
+        printf("Shoot\n");
     }
 
 }
