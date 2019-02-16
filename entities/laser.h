@@ -11,6 +11,7 @@ class Laser : public PhysicalEntity {
 	float angle;
 	SDL_Color color;
 	float vx, vy;
+	float time_alive;
 
 public:
 
