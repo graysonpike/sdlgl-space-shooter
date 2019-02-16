@@ -46,7 +46,6 @@ Player::Player(Scene *scene, float x, float y, float angle, SDL_Color color) :
 
 void Player::shoot_laser() {
     scene->add_entity(new Laser(scene, x, y, angle, (SDL_Color){255, 255, 255, 255}));
-    printf("Entity added\n");
 }
 
 
@@ -70,7 +69,6 @@ void Player::handle_inputs(Inputs *inputs) {
 
     if (inputs->is_key_down_event(KEY_P1_FIRE_LASER)) {
         shoot_laser();
-        printf("Shoot\n");
     }
 
 }
