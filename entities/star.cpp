@@ -39,11 +39,11 @@ Star::Star(Scene *scene, float x, float y, int w, int h, float vx, float vy) :
     vx(vx), vy(vy) {};
 
 void Star::update() {
-   float delta = scene->get_delta();
-   time += delta;
-   x += vx;
-   y += vy;
-   wrap_bounds();
+    float delta = scene->get_delta();
+    time += delta;
+    x += vx;
+    y += vy;
+    wrap_bounds();
 }
 
 void Star::render() {
