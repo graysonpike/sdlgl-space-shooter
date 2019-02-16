@@ -7,12 +7,15 @@
 
 
 Laser::Laser(Scene *scene, float x, float y, float angle, SDL_Color color) :
-    PhysicalEntity(scene, x, y, w, h),
+    PhysicalEntity(scene, x, y, 0, 0),
     angle(angle),
     color(color) {
 
     Resources *resources = scene->get_graphics()->get_resources();
     texture = resources->get_texture("laser");
+
+    w = texture.get_width();
+    h = texture.get_height();
 
 }
 
@@ -27,7 +30,6 @@ void Laser::update() {
 
 
 void Laser::render() {
-
     texture.draw(scene->get_graphics()->get_renderer(), this->x, this->y, this->angle);
 
 }
