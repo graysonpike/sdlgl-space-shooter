@@ -8,6 +8,7 @@
 #include <time.h>
 
 #include <sdlgl/ui/fps_display.h>
+#include <sdlgl/ui/entity_count.h>
 
 #include "entities/player.h"
 #include "entities/star.h"
@@ -29,6 +30,8 @@ int main() {
     // Create and populate scene
     Scene scene(&inputs, &graphics);
     scene.add_entity(new FPS_Display(
+        &scene, "base_text", {255, 255, 255, 255}));
+    scene.add_entity(new EntityCount(
         &scene, "base_text", {255, 255, 255, 255}));
     Star::create_starfield(&scene, 2.0f);
     scene.add_entity(new Player(&scene, 100, 100, 0, {0, 0, 0, 0}));
