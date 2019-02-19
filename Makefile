@@ -13,6 +13,8 @@ OBJ_FILES = main.o \
 
 clean:
 	rm -f *.out *.o
+	cd entities
+	rm -f *.out *.o
 
 main.out: $(OBJ_FILES)
 	$(CC) $(FLAGS) -o main.out $(OBJ_FILES) $(LIBS)
