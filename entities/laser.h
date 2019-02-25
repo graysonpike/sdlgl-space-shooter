@@ -10,7 +10,6 @@ class Laser : public PhysicalEntity {
 	Texture texture;
 	float angle;
 	SDL_Color color;
-	float vx, vy;
 	float time_alive;
 
 public:

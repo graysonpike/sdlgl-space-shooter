@@ -3,8 +3,8 @@
 #include <sdlgl/graphics/resources.h>
 
 
-#define SPEED (300.0f)
-#define LIFETIME (2.5f)
+#define SPEED (600.0f)
+#define LIFETIME (1.1f)
 
 
 Laser::Laser(Scene *scene, float x, float y, float angle, SDL_Color color) :
