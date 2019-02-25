@@ -22,7 +22,7 @@ int main() {
     Inputs inputs;
 
     // Load a window
-    Graphics graphics(640, 480);
+    Graphics graphics(1080, 720);
 
     // Load resources
     graphics.get_resources()->load_resources("resources.json");
